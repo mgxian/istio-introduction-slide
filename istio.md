@@ -19,7 +19,7 @@
 
 ---
 
-### 容器技术的广泛应用
+### 容器被广泛应用
 
 <img src="images/docker.png" height="200px" width="200px">
 <img src="images/kubernetes.png" height="200px" width="200px">
@@ -30,30 +30,30 @@
 
 ---
 
-### 微服务的快速流行
+### 微服务架构流行
 
 <img src="images/microservice.png" height="230px" width="430px">
 
 - 云计算飞速发展，云原生的概念被提出
-- 微服务架构模式在大公司兴起，特别是在 Netflix、亚马逊等公司的大规模实践
-- 越来越多的公司开始尝试使用微服务架构
+- 微服务架构模式在大公司的大规模实践
+- 很多的公司开始尝试使用微服务架构
 
 ---
 
-### 微服务架构中的痛
+### 微服务架构的问题
 
 <img src="images/microservice-communication.png" height="250px" width="650px">
 
-- 服务间通信复杂，服务需要处理复杂的服务间通信
-- 开发统一的服务框架，服务间通信、路由等功能由服务框架实现
-- 业务开发人员无法选择合适的技术栈
+- 服务间通信复杂
+- 开发服务框架，处理服务间通信
+- 业务开发技术栈受制于服务框架
 - 服务框架版本升级困难
 
 ---
 
 <img src="images/thinking.png" height="300px" width="350px">
 
-基于以上的服务间通信问题，有人开始思考能不能把服务间的复杂通信分层并下沉到基础设施层去做，让应用无感知呢？然后服务网格的概念就产生了。
+有人开始思考能不能把服务间的复杂通信下沉到基础设施层去做，让应用无感知呢？
 
 ---
 
@@ -71,32 +71,12 @@
 
 ### 服务网格的特点
 
+![](images/philcalcado-service-mesh-1.png)
+
 - 轻量级网络代理
 - 应用无感知
 - 应用间流量由服务网格接管
 - 超时、重试、监控、追踪等功能下沉到服务网格层
-
----
-
-### 为什么称为服务网格
-
----
-
-![](images/philcalcado-service-mesh-1.png)
-
-绿色部分代表应用，蓝色部分是服务网格中的网络代理
-
----
-
-### 服务网格架构
-
----
-
-![](images/philcalcado-service-mesh-2.png)
-
-控制平面（control plane）负责服务之间的请求规则
-
-数据面（data plane）负责服务间的请求代理
 
 ---
 
@@ -188,3 +168,76 @@ spec:
 ---
 
 ## 请求完整链路分析
+
+---
+
+**Envoy 中的概念**
+
+![](images/envoy-logo.svg)
+
+- LDS：监听器发现服务，服务实例的监听端口
+- RDS：路由发现服务，路由流量到不同的集群中
+- CDS：集群发现服务，服务实例的集群
+- EDS：端点发现服务，单个服务实例
+
+---
+
+### HTTP 请求分析
+
+---
+
+**DNS 解析**
+
+---
+
+**调用方发出请求**
+
+![](images/listener-1.png)
+
+---
+
+![](images/listener-2.png)
+
+---
+
+![](images/listener-json.png)
+
+---
+
+![](images/route-1.png)
+
+---
+
+![](images/route-2.png)
+
+---
+
+![](images/cluster-1.png)
+
+---
+
+![](images/cluster-2.png)
+
+---
+
+![](images/endpoint.png)
+
+---
+
+**服务方接受请求**
+
+---
+
+![](images/inbound-listener.png)
+
+---
+
+![](images/inbound-listener-2.png)
+
+---
+
+![](images/inbound-cluster.png)
+
+---
+
+### 谢谢
