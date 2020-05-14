@@ -273,11 +273,7 @@ spec:
 
 ---
 
-### HTTP 请求分析
-
----
-
-#### 调用方发出请求
+### 调用方发出请求
 
 ---
 
@@ -327,7 +323,7 @@ istioctl pc cluster gllue-web-8-7595b78979-8wmfc.gllue-web --fqdn gllue-web-1-sv
 
 ---
 
-**服务方接受请求**
+### 服务方接受请求
 
 ---
 
@@ -347,6 +343,6 @@ istioctl pc listener gllue-web-1-6d66c8798b-74gw8.gllue-web --port 8090 --addres
 
 ---
 
-### End
+### 谢谢
 
-谢谢
+End
