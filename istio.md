@@ -53,7 +53,7 @@
 
 <img src="images/thinking.png" height="300px" width="350px">
 
-能不能把服务间的复杂通信下沉到基础设施层去做，让应用无感知呢？
+能不能把服务间的复杂通信下沉到基础设施层，让应用无感知呢？
 
 ---
 
@@ -63,7 +63,7 @@
 
 ### 定义
 
-服务网格(service mesh)概念来源于文章 [What’s a service mesh? And why do I need one?](https://blog.buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/)
+服务网格（service mesh）概念来源于文章 [What’s a service mesh? And why do I need one?](https://blog.buoyant.io/2017/04/25/whats-a-service-mesh-and-why-do-i-need-one/)
 
 服务网格是一个专注于处理服务间通信的基础设施层，它负责在由现代云原生应用组成的复杂的服务拓扑中可靠的传递请求，在实践中，服务网格通常被实现为一组随着应用代码部署的轻量级网络代理，与此同时，应用无须感知它的存在。
 
@@ -95,7 +95,7 @@ Connect, secure, control, and observe services
 Notes:
 Istio 的官方图标为一个白色的小帆船。
 
-Istio 出自希腊语，发音类似于 ['ɪstɪəʊ]，表达的意思为英文的 “sail”，表示”航行“的意思。 
+Istio 出自希腊语，发音类似于 ['ɪstɪəʊ]，表达的意思为英文的 “sail”，表示”航行“的意思。
 
 使用 Istio 可以让服务间的通信更简单，更安全，控制服务更容易，并使得观测服务更方便
 
@@ -139,9 +139,9 @@ Envoy 以边车（sidecar）的方式与服务部署在同一个 Kubernetes Pod 
 
 <img src="images/arch.svg" height="330px" width="500px">
 
-控制平面 istiod 负责接受用户配置，生成路由规则、分发路由规则到代理
+控制平面 istiod 负责接受用户配置，生成路由规则、分发路由规则到 Envoy 代理
 
-- Pilot 提供服务发现功能和流量管理能力
+- Pilot 提供服务发现和流量管理能力
 - Citadel 提供服务间认证，通信加密
 - Galley 负责用户输入规则的合规性校验
 
@@ -178,7 +178,7 @@ spec:
 
 ---
 
-**服务UID**
+**服务 UID**
 
 服务不能使用 UID 为 1337 用户运行，istio 会使用这个 UID 进行流量截持相关处理
 
@@ -224,12 +224,12 @@ metadata:
 spec:
   host: service-go
   subsets:
-  - name: v1
-    labels:
-      version: v1
-  - name: v2
-    labels:
-      version: v2
+    - name: v1
+      labels:
+        version: v1
+    - name: v2
+      labels:
+        version: v2
 ```
 
 ---
@@ -243,17 +243,17 @@ metadata:
   name: service-go
 spec:
   hosts:
-  - service-go
+    - service-go
   http:
-  - route:
-    - destination:
-        host: service-go
-        subset: v1
-      weight: 70
-    - destination:
-        host: service-go
-        subset: v2
-      weight: 30
+    - route:
+        - destination:
+            host: service-go
+            subset: v1
+          weight: 70
+        - destination:
+            host: service-go
+            subset: v2
+          weight: 30
 ```
 
 ---
@@ -266,7 +266,7 @@ spec:
 
 ![](images/envoy-logo.svg)
 
-- LDS：监听器发现服务，服务实例的监听端口
+- LDS：监听器发现服务，服务实例的监听地址
 - RDS：路由发现服务，路由流量到不同的集群中
 - CDS：集群发现服务，服务实例的集群
 - EDS：端点发现服务，单个服务实例地址
@@ -287,7 +287,6 @@ spec:
 
 ---
 
-
 ```sh
 istioctl pc listener gllue-web-8-7595b78979-8wmfc.gllue-web
 ```
@@ -301,10 +300,6 @@ istioctl pc listener gllue-web-8-7595b78979-8wmfc.gllue-web
 ---
 
 ![](images/listener-json.png)
-
----
-
-![](images/route-1.png)
 
 ---
 
